@@ -205,6 +205,6 @@ Solo es necesario que el schema exista.
 Para la opción 2:
 En la carpeta /resource/scripts se encuentran dos archivos para la creación de la base de datos.
 Los archivos son:
-01_CREATE_SCHEMA.sql: para la creacion de la base de datos
-02_CREATE_TABLES.sql: para la creacion de las tablas users y phones.
+*01_CREATE_SCHEMA.sql: para la creacion de la base de dato
+*02_CREATE_TABLES.sql: para la creacion de las tablas users y phones.
 
