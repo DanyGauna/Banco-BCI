@@ -30,14 +30,14 @@ Devuelve un objecto de tipo UserResponse con las siguientes características:
 
 El objeto contiene dos atributos
 
-	* Object data: mapea todos los atributos requeridos en la documentación en formato json.
-	* Error error: objecto con 3 atributos(fecha, codigo y detail) que se completan en caso de error.
+	Object data: mapea todos los atributos requeridos en la documentación en formato json.
+	Error error: objecto con 3 atributos(fecha, codigo y detail) que se completan en caso de error.
 
 En los casos de éxito el atributo data contiene la informacón requerida y error contiene valor null.
 En los casos de error el atributo error contiene la información requerida y data contiene valor null.
 
 
-	*URL: http://localhost:8080/user/sign-up
+	URL: http://localhost:8080/user/sign-up
 
 	Método: POST
 
@@ -47,7 +47,7 @@ Ejemplos de request:
 
 Ejemplo de creación exitosa:
 
-	*{
+	{
 		   "name":"Julio Gonzales",
 		   "email":"juliogonzalez@testssw.cl",
 		   "password":"a2asfGfdfdf4",
@@ -62,7 +62,7 @@ Ejemplo de creación exitosa:
 
 Ejemplo de error de formato de email:
 
-    *{
+    {
 		   "name":"Julio Gonzales",
 		   "email":"juliogonzaleztestssw.cl",
 		   "password":"a2asfGfdfdf4",
@@ -77,7 +77,7 @@ Ejemplo de error de formato de email:
 
 Ejemplo de error de contraseña inválida:
 
-    *{
+    {
 		   "name":"Julio Gonzales",
 		   "email":"juliogonzalez@testssw.cl",
 		   "password":"aaasfgfdfdf4",
@@ -94,7 +94,7 @@ Ejemplos response:
 
 -Ejemplo de caso exitoso:
 
-    *{
+    {
 	    "data": {
 	        "id": 1,
 	        "uuid": "5d91f804b1b540fda1f905b37382e5b4",
@@ -108,7 +108,7 @@ Ejemplos response:
 
 -Ejemplo de caso con error:
 
-    *{
+    {
 	    "data": null,
 	    "error": {
 	        "fecha": "2022-04-15T20:36:39.7220534",
@@ -121,7 +121,7 @@ Ejemplos response:
 # Servicio: /login
 El método recibe por parámetro el token para realizar la consulta.
 
-	*URL: http://localhost:8080/user/login
+	URL: http://localhost:8080/user/login
 
 	Method: POST
 
@@ -131,13 +131,13 @@ Ejemplo de request:
 
 Para obtener un usuario es necesario consultarlo mediante el token que se obtiene con su creación
 
-    *{
+    {
 	   	"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW55QGdtYWlsLmNvbSIsInV1aWQiOiI0OGIxNDc4MjJhODY0ZTUxYjU4NTRkYWQzYWY3MDI
 	   	4MSIsImlhdCI6MTY1MDE0Nzg0MCwiZXhwIjoxNjUwMTQ4MjAwfQ.oM47GsIP3HAvhQrQTUDCHATsgJZcZ5E_RVmH30UO3zI"
 	  }
 Ejemplo de response exitoso:
 
-	*{
+	{
 	    "data": {
 	        "id": 1,
 	        "uuid": "48b147822a864e51b5854dad3af70281",
@@ -161,7 +161,7 @@ Ejemplo de response exitoso:
 
 Ejemplos response con token inválido:
 
-	*{
+	{
 	    "data": null,
 	    "error": {
 	        "fecha": "2022-04-16T20:21:38.3608268",
@@ -172,7 +172,7 @@ Ejemplos response con token inválido:
 
 Ejemplos response con token inválido:
 
-	*{
+	{
 	    "data": null,
 	    "error": {
 	        "fecha": "2022-04-16T20:26:31.5468158",
@@ -185,7 +185,7 @@ Ejemplos response con token inválido:
 
 Método que solo devuelve la versión
 
-	*Method: GET
+	Method: GET
 
 	http://localhost:8080/version
 
@@ -195,12 +195,18 @@ Respuesta: Versión: 1.0.0
 # Base de Datos:
 
 La base de datos se puede utilizar de dos formas.
-1 - Levantando la API con la configuración actual se crea una base de datos DB2 en memoria.
- * Ventajas: no es necesario la creación de una base de datos externa ni correr scripts.
- * Desventajas: cada vez que paramos el servidor se elimina la base y por lo tanto los datos.
-2 - Levantando la API con una configuración de conexión a una base de datos MySQL. Para esto hay que correr los scripts ubicados en la carpeta resources/scripts y descomentar las propiedades que se encuentran en el application.properties con el tag Database connection.
- * Ventajas: los datos persisten indefinidamente.
- * Desventajas: hay que tomarse la molestia de correr todos los scripts.
+
+	1 - Levantando la API con la configuración actual se crea una base de datos DB2 en memoria:
+	
+    	* Ventajas: no es necesario la creación de una base de datos externa ni correr scripts.
+    	* Desventajas: cada vez que paramos el servidor se elimina la base y por lo tanto los datos.
+    
+	2 - Levantando la API con una configuración de conexión a una base de datos MySQL. 
+	Para esto hay que correr los scripts ubicados en     la carpeta resources/scripts y descomentar las propiedades que se 
+	encuentran en el application.properties con el tag Database connection:
+	
+    	* Ventajas: los datos persisten indefinidamente.
+    	* Desventajas: hay que tomarse la molestia de correr todos los scripts.
 
 NOTA: en caso de optar por la configuracion 2 no es necesario correr el scripts de la creación de las tablas ya que el el sistema la creará si no existe.
 Solo es necesario que el schema exista.
@@ -208,6 +214,7 @@ Solo es necesario que el schema exista.
 Para la opción 2:
 En la carpeta /resource/scripts se encuentran dos archivos para la creación de la base de datos.
 Los archivos son:
- * 01_CREATE_SCHEMA.sql: para la creacion de la base de dato
- * 02_CREATE_TABLES.sql: para la creacion de las tablas users y phones.
+
+    01_CREATE_SCHEMA.sql: para la creacion de la base de dato
+    02_CREATE_TABLES.sql: para la creacion de las tablas users y phones.
 
