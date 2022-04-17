@@ -30,161 +30,164 @@ Devuelve un objecto de tipo UserResponse con las siguientes características:
 
 El objeto contiene dos atributos
 
-* - Object data: mapea todos los atributos requeridos en la documentación en formato json.
-* - Error error: objecto con 3 atributos(fecha, codigo y detail) que se completan en caso de error.
+	* Object data: mapea todos los atributos requeridos en la documentación en formato json.
+	* Error error: objecto con 3 atributos(fecha, codigo y detail) que se completan en caso de error.
 
 En los casos de éxito el atributo data contiene la informacón requerida y error contiene valor null.
 En los casos de error el atributo error contiene la información requerida y data contiene valor null.
 
 
-URL: http://localhost:8080/user/sign-up
+	*URL: http://localhost:8080/user/sign-up
 
-Método: POST
+	Método: POST
 
-Header: Content-Type value application/json
+	Header: Content-Type value application/json
 
 Ejemplos de request:
 
 Ejemplo de creación exitosa:
 
-{
-   "name":"Julio Gonzales",
-   "email":"juliogonzalez@testssw.cl",
-   "password":"a2asfGfdfdf4",
-   "phones":[
-      {
-         "number":"123456",
-         "cityCode":1,
-         "countryCode":"2"
-      }
-   ]
-}
+	*{
+		   "name":"Julio Gonzales",
+		   "email":"juliogonzalez@testssw.cl",
+		   "password":"a2asfGfdfdf4",
+		   "phones":[
+		      {
+		         "number":"123456",
+		         "cityCode":1,
+		         "countryCode":"2"
+		      }
+		   ]
+		}
 
 Ejemplo de error de formato de email:
 
-{
-   "name":"Julio Gonzales",
-   "email":"juliogonzaleztestssw.cl",
-   "password":"a2asfGfdfdf4",
-   "phones":[
-      {
-         "number":"123456",
-         "cityCode":1,
-         "countryCode":"2"
-      }
-   ]
-}
+    *{
+		   "name":"Julio Gonzales",
+		   "email":"juliogonzaleztestssw.cl",
+		   "password":"a2asfGfdfdf4",
+		   "phones":[
+		      {
+		         "number":"123456",
+		         "cityCode":1,
+		         "countryCode":"2"
+		      }
+		   ]
+		}
 
 Ejemplo de error de contraseña inválida:
 
-{
-   "name":"Julio Gonzales",
-   "email":"juliogonzalez@testssw.cl",
-   "password":"aaasfgfdfdf4",
-   "phones":[
-      {
-         "number":"123456",
-         "cityCode":1,
-         "countryCode":"2"
-      }
-   ]
-}
+    *{
+		   "name":"Julio Gonzales",
+		   "email":"juliogonzalez@testssw.cl",
+		   "password":"aaasfgfdfdf4",
+		   "phones":[
+		      {
+		         "number":"123456",
+		         "cityCode":1,
+		         "countryCode":"2"
+		      }
+		   ]
+		}
 
 Ejemplos response:
 
 -Ejemplo de caso exitoso:
 
-{
-    "data": {
-        "id": 1,
-        "uuid": "5d91f804b1b540fda1f905b37382e5b4",
-        "created": "2022-04-15T23:36:06.186+00:00",
-        "lastLogin": "2022-04-15T23:36:06.186+00:00",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW55QGdtYWlsLmNvbSIsInV1aWQiOiI1ZDkxZjgwNGIxYjU0MGZkYTFmOTA1YjM3MzgyZTViNCIsImlhdCI6MTY1MDA2NTc2NiwiZXhwIjoxNjUwMDY2MTI2fQ.fLJM70DCiaqlr2QKaJa3Da6w1oC3nz9tugrwwzyin6g",
-        "isActivo": true
-    },
-    "error": null
-}
+    *{
+	    "data": {
+	        "id": 1,
+	        "uuid": "5d91f804b1b540fda1f905b37382e5b4",
+	        "created": "2022-04-15T23:36:06.186+00:00",
+	        "lastLogin": "2022-04-15T23:36:06.186+00:00",
+	        "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW55QGdtYWlsLmNvbSIsInV1aWQiOiI1ZDkxZjgwNGIxYjU0MGZkYTFmOTA1YjM3MzgyZTViNCIsImlhdCI6MTY1MDA2NTc2NiwiZXhwIjoxNjUwMDY2MTI2fQ.fLJM70DCiaqlr2QKaJa3Da6w1oC3nz9tugrwwzyin6g",
+	        "isActivo": true
+	    },
+	    "error": null
+    }
 
 -Ejemplo de caso con error:
 
-{
-    "data": null,
-    "error": {
-        "fecha": "2022-04-15T20:36:39.7220534",
-        "codigo": 3,
-        "detail": "El usuario ya existe."
-    }
-}
+    *{
+	    "data": null,
+	    "error": {
+	        "fecha": "2022-04-15T20:36:39.7220534",
+	        "codigo": 3,
+	        "detail": "El usuario ya existe."
+	    }
+     }
 
 # 
 # Servicio: /login
 El método recibe por parámetro el token para realizar la consulta.
 
-URL: http://localhost:8080/user/login
+	*URL: http://localhost:8080/user/login
 
-Method: POST
+	Method: POST
+
+	Header: Content-Type value application/json
 
 Ejemplo de request:
 
 Para obtener un usuario es necesario consultarlo mediante el token que se obtiene con su creación
 
-{
-   	"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW55QGdtYWlsLmNvbSIsInV1aWQiOiI0OGIxNDc4MjJhODY0ZTUxYjU4NTRkYWQzYWY3MDI4MSIsImlhdCI6MTY1MDE0Nzg0MCwiZXhwIjoxNjUwMTQ4MjAwfQ.oM47G										sIP3HAvhQrQTUDCHATsgJZcZ5E_RVmH30UO3zI"
-}
+    *{
+	   	"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW55QGdtYWlsLmNvbSIsInV1aWQiOiI0OGIxNDc4MjJhODY0ZTUxYjU4NTRkYWQzYWY3MDI
+	   	4MSIsImlhdCI6MTY1MDE0Nzg0MCwiZXhwIjoxNjUwMTQ4MjAwfQ.oM47GsIP3HAvhQrQTUDCHATsgJZcZ5E_RVmH30UO3zI"
+	  }
 Ejemplo de response exitoso:
 
-{
-    "data": {
-        "id": 1,
-        "uuid": "48b147822a864e51b5854dad3af70281",
-        "created": "2022-04-16T22:24:00.542+00:00",
-        "lastLogin": "2022-04-16T22:24:00.542+00:00",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW55QGdtYWlsLmNvbSIsInV1aWQiOiI0OGIxNDc4MjJhODY0ZTUxYjU4NTRkYWQzYWY3MDI4MSIsImlhdCI6MTY1MDE0Nzg0MCwiZXhwIjoxNjUwMTQ4MjAwfQ.oM47GsIP3HAvhQrQTUDCHATsgJZcZ5E_RVmH30UO3zI",
-        "isActivo": true,
-        "name": "Julio Gonzales",
-        "email": "dany@gmail.com",
-        "password": "$2a$10$aiT2bp4g2HS1PAPfJ1iAZuzmy6TSICNvUCMKFEovyWtfX1oopA.Lu",
-        "phones": [
-            {
-                "number": 123456,
-                "cityCode": 1,
-                "countryCode": "2"
-            }
-        ]
-    },
-    "error": null
-}
+	*{
+	    "data": {
+	        "id": 1,
+	        "uuid": "48b147822a864e51b5854dad3af70281",
+	        "created": "2022-04-16T22:24:00.542+00:00",
+	        "lastLogin": "2022-04-16T22:24:00.542+00:00",
+	        "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW55QGdtYWlsLmNvbSIsInV1aWQiOiI0OGIxNDc4MjJhODY0ZTUxYjU4NTRkYWQzYWY3MDI4MSIsImlhdCI6MTY1MDE0Nzg0MCwiZXhwIjoxNjUwMTQ4MjAwfQ.oM47GsIP3HAvhQrQTUDCHATsgJZcZ5E_RVmH30UO3zI",
+	        "isActivo": true,
+	        "name": "Julio Gonzales",
+	        "email": "dany@gmail.com",
+	        "password": "$2a$10$aiT2bp4g2HS1PAPfJ1iAZuzmy6TSICNvUCMKFEovyWtfX1oopA.Lu",
+	        "phones": [
+	            {
+	                "number": 123456,
+	                "cityCode": 1,
+	                "countryCode": "2"
+	            }
+	        ]
+	    },
+	    "error": null
+	}
 
 Ejemplos response con token inválido:
 
-{
-    "data": null,
-    "error": {
-        "fecha": "2022-04-16T20:21:38.3608268",
-        "codigo": 4,
-        "detail": "Token inválido."
-    }
-}
+	*{
+	    "data": null,
+	    "error": {
+	        "fecha": "2022-04-16T20:21:38.3608268",
+	        "codigo": 4,
+	        "detail": "Token inválido."
+	    }
+	}
 
 Ejemplos response con token inválido:
 
-{
-    "data": null,
-    "error": {
-        "fecha": "2022-04-16T20:26:31.5468158",
-        "codigo": 5,
-        "detail": "Token expirado."
-    }
-}
+	*{
+	    "data": null,
+	    "error": {
+	        "fecha": "2022-04-16T20:26:31.5468158",
+	        "codigo": 5,
+	        "detail": "Token expirado."
+	    }
+	 }
 # 
 # Servicio: /version
 
 Método que solo devuelve la versión
 
-Method: GET
+	*Method: GET
 
-http://localhost:8080/version
+	http://localhost:8080/version
 
 Respuesta: Versión: 1.0.0
 
@@ -205,6 +208,6 @@ Solo es necesario que el schema exista.
 Para la opción 2:
 En la carpeta /resource/scripts se encuentran dos archivos para la creación de la base de datos.
 Los archivos son:
-*01_CREATE_SCHEMA.sql: para la creacion de la base de dato
-*02_CREATE_TABLES.sql: para la creacion de las tablas users y phones.
+ * 01_CREATE_SCHEMA.sql: para la creacion de la base de dato
+ * 02_CREATE_TABLES.sql: para la creacion de las tablas users y phones.
 
