@@ -3,12 +3,19 @@ package com.bbci.createuser.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class Utils {
+	
+	@Value("${pattern.email}")
+	private static String patternEmail;
+	
+	@Value("${pattern.passwordvalidator}")
+	private static String patternPasswordValidator;
 
 	public static Boolean validaEmail(String email) {
 
-		Pattern pattern = Pattern.compile(
-				"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+		Pattern pattern = Pattern.compile(patternEmail);
 		Matcher mather = pattern.matcher(email);
 		if (mather.find() == true) {
 			return true;
@@ -20,7 +27,7 @@ public class Utils {
 	public static String passwordValidator(String password) {
 
 		Pattern pattern = Pattern
-				.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,12}$");
+				.compile(patternPasswordValidator);
 		Matcher mather = pattern.matcher(password);
 		if (mather.find() == true) {
 			return "";
